@@ -1,0 +1,210 @@
+
+ <div class=" h-full grid grid-rows-3 gap-4 col-span-2 content-around mx-20  mt-8">
+  <div class="row-span-3 flex flex-col space-y-4">
+      <!--form-->
+      <div class="box-border   p-4 border-4 "
+      >
+        <div class="px-4 py-10 sm:px-6">
+         
+            <form [formGroup]="courseForm" novalidate>
+              <div>
+                <mat-card-header>
+                  <mat-card-title>Update Course</mat-card-title>
+                </mat-card-header>
+                <mat-card-content>
+                  <div class="bg-light-900 ">
+                    <div
+                      class="px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6 self-center"
+                    >
+                      <mat-form-field>
+                        <input
+                          matInput
+                          placeholder="Title"
+                          formControlName="title"
+                        />
+                        <mat-error
+                          *ngIf="
+                            courseForm.controls['title'].hasError('required')
+                          "
+                        >
+                          Course's Title <strong>is required</strong>
+                        </mat-error>
+                      </mat-form-field>
+                    </div>
+  
+                    <div
+                      class="px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6"
+                    >
+                      <mat-form-field class="full-width">
+                        <input
+                          matInput
+                          placeholder="Description"
+                          formControlName="description"
+                        />
+                        <mat-error
+                          *ngIf="
+                            courseForm.controls['description'].hasError(
+                              'required'
+                            )
+                          "
+                        >
+                          Course's description <strong>is required</strong>
+                        </mat-error>
+                      </mat-form-field>
+                    </div>
+  
+                    <div
+                      class="px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6"
+                    >
+                      <mat-form-field class="full-width">
+                        <input
+                          matInput
+                          placeholder="Author"
+                          formControlName="author"
+                        />
+                        <mat-error
+                          *ngIf="
+                            courseForm.controls['author'].hasError('required')
+                          "
+                        >
+                          Course's author <strong>is required</strong>
+                        </mat-error>
+                      </mat-form-field>
+                    </div>
+  
+                    <div
+                      class="px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6"
+                    >
+                      <mat-form-field class="full-width">
+                        <mat-label>Category</mat-label>
+                        <mat-select formControlName="category">
+                          <mat-option
+                            *ngFor="let category of courseCategory"
+                            [value]="category.value"
+                            selected="category.value === ngSelect"
+                          >
+                            {{ category.viewValue }}
+                          </mat-option>
+                        </mat-select>
+                        <mat-error
+                          *ngIf="
+                            courseForm.controls['category'].hasError('required')
+                          "
+                        >
+                          course's Category<strong>is required</strong>
+                        </mat-error>
+                      </mat-form-field>
+                    </div>
+                    
+  
+                    <div class="pt-10">
+                      <app-upload-course-cover
+                        [courseId]="currentCourseId"
+                        (uploadPictureEvent)="refresh($event)"
+                      >
+                      </app-upload-course-cover>
+                     
+                    </div>
+                  </div>
+                </mat-card-content>
+              </div>
+            </form>
+         
+  
+          
+        </div>
+      </div>
+  </div>
+      <!--  End of form-->
+      <!--partie ressourses-->
+      <div class="col-span-2 max-h-80 my-8 ">
+      <div
+      class="shadow overflow-hidden border-t border-gray-200 bg-white "
+    >
+    <h2> this Course's Ressources </h2>
+
+    <div class="bg-white px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
+      <dt class="text-sm font-medium text-gray-500">Attachments</dt>
+      <dd class="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2">
+        <ul role="list" class="border border-gray-200 rounded-md divide-y divide-gray-200">
+          <li class="pl-3 pr-4 py-3 flex items-center justify-between text-sm">
+            <div class="w-0 flex-1 flex items-center">
+              <!-- Heroicon name: solid/paper-clip -->
+              <svg class="flex-shrink-0 h-5 w-5 text-gray-400" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
+                <path fill-rule="evenodd" d="M8 4a3 3 0 00-3 3v4a5 5 0 0010 0V7a1 1 0 112 0v4a7 7 0 11-14 0V7a5 5 0 0110 0v4a3 3 0 11-6 0V7a1 1 0 012 0v4a1 1 0 102 0V7a3 3 0 00-3-3z" clip-rule="evenodd" />
+              </svg> <span class="ml-2 flex-1 w-0 truncate"> resume_back_end_developer.pdf </span>
+             
+            </div>
+            <div class="ml-4 flex-shrink-0">
+              <a href="#" class="font-medium text-indigo-600 hover:text-indigo-500"> Download </a>
+            </div>
+          </li>
+          <li class="pl-3 pr-4 py-3 flex items-center justify-between text-sm">
+            <div class="w-0 flex-1 flex items-center">
+              <!-- Heroicon name: solid/paper-clip -->
+              <svg class="flex-shrink-0 h-5 w-5 text-gray-400" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
+                <path fill-rule="evenodd" d="M8 4a3 3 0 00-3 3v4a5 5 0 0010 0V7a1 1 0 112 0v4a7 7 0 11-14 0V7a5 5 0 0110 0v4a3 3 0 11-6 0V7a1 1 0 012 0v4a1 1 0 102 0V7a3 3 0 00-3-3z" clip-rule="evenodd" />
+              </svg>
+              <span class="ml-2 flex-1 w-0 truncate"> coverletter_back_end_developer.pdf </span>
+            </div>
+            <div class="ml-4 flex-shrink-0">
+              <a href="#" class="font-medium text-indigo-600 hover:text-indigo-500"> Download </a>
+            </div>
+          </li>
+        </ul>
+      </dd>
+    </div>
+    <div>
+      <app-upload-ressource [courseId]="currentCourseId"
+      (uploadRessourseEvent)="refresh($event)"
+      >
+    </app-upload-ressource>
+  </div>
+    
+      </div>
+      </div>
+      <!--part 2-->
+      <div class="row-span-2 col-span-2 my-8 ...">
+      <div
+      class="shadow overflow-hidden border-t border-gray-200 bg-white "
+      >
+      
+        <button
+          mat-button
+          color="primary"
+          (click)="displayAddChapterFormDialog()"
+        >
+          Add Chapter
+        </button>
+        <app-chapters-list></app-chapters-list>
+      </div>
+    </div>
+
+
+    
+  
+    <!--action-->
+ <div class="row-span-2 col-span-2 justify-self-end  my-8 ">
+    <div class="md:container md:mx-auto pb-8  ">
+    <div class="self-end">
+        <button mat-raised-button [routerLink]="['/admin/courses']">
+          Cancel
+        </button>
+        <button
+        
+          mat-raised-button
+          color="primary"
+          (click)="onSubmit()"
+        >
+          Update
+        </button>
+  
+    </div>
+  </div>
+ </div>
+</div>
+
+
+
+
+  

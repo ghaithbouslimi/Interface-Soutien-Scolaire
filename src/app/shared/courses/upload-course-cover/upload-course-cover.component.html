@@ -1,0 +1,9 @@
+<label class="upload-button">
+    <button mat-button color="primary">Upload a Picture as Course's Cover</button>
+    <input 
+        type="file" ngFileSelect [options]="options" 
+        (uploadOutput)="onUploadOutput($event)" 
+        [uploadInput]="uploadInput"
+        single
+    >
+</label>

@@ -1,0 +1,123 @@
+<form [formGroup]="formationForm">
+    <div class="min-h-screen bg-indigo-50 md:px-20 pt-14">
+      <div class="max-w-2xl px-6 py-10 mx-auto bg-white rounded-md">
+        <h1 class="mb-10 text-2xl font-bold text-center text-gray-500">
+          Update Training
+        </h1>
+        <div class="space-y-4">
+          <div>
+            <label for="title" class="font-serif text-lx">Title:</label>
+            <input
+              type="text"
+              placeholder="title"
+              class="px-2 py-1 ml-2 border-2 rounded-md outline-none text-md"
+              formControlName="titre"
+              required
+              />
+          </div>
+  
+          <div>
+            <label for="duree" class="font-serif text-lx">Durée:</label>
+            <input
+              type="text"
+              placeholder="Duree"
+              formControlName="duree"
+              class="px-2 py-1 ml-2 border-2 rounded-md outline-none text-md"
+            />
+          </div>
+          <div>
+            <label for="theme" class="font-serif text-lx">Theme:</label>
+            <input
+              type="text"
+              placeholder="theme"
+              formControlName="theme"
+              class="px-2 py-1 ml-2 border-2 rounded-md outline-none text-md"
+            />
+          </div>
+  
+          <!--courses-->
+          <div>
+            <span>Courses</span>
+            <ul>
+              <li  class="text-blue-700" *ngFor="let course of coursesList">{{course.title}} {{course.category}}</li>
+            </ul>
+          </div>
+          <ng-select  
+            bindLabel="course"
+            placeholder="Select an attachment Course"
+            [searchable]="true"
+            formControlName="courses"
+            [virtualScroll]="true"
+            [multiple]="true"
+            required 
+            >
+            <ng-option
+              [value]="course"
+              [disabled]=""
+              *ngFor="let course of coursesList"
+            >
+              <div class="flex flex-row w-full px-3 py-2 shadow-md">
+                <span class="w-full px-2 py-2 font-mono">
+                  {{ course?.title }}</span
+                >
+                <span class="w-full px-2 py-2 font-mono">
+                  {{ course?.category }}</span
+                >
+              </div>
+            </ng-option>
+          </ng-select>
+          <mat-error
+            *ngIf="formationForm.controls['courses'].hasError('required')"
+          >
+            Courses Required
+          </mat-error>
+  
+             <!--Coaches-->
+             <ng-select 
+             bindLabel="coach"
+             placeholder="Select a Coach for this Training"
+             [searchable]="true"
+             formControlName="coach"
+             [virtualScroll]="true" 
+             required
+           >
+             <ng-option
+               [value]="coach"
+               [disabled]=""
+               *ngFor="let coach of coachList"
+               selected="coach.fullName === ngSelect"
+             >
+               <div class="flex flex-row w-full px-3 py-2 shadow-md">
+                 <span class="w-full px-2 py-2 font-mono">
+                   {{ coach?.fullName }}</span
+                 >
+                 <span class="w-full px-2 py-2 font-mono">
+                  {{ coach?.speciality }}</span
+                >
+               </div>
+             </ng-option>
+           </ng-select>
+           <mat-error
+             *ngIf="formationForm.controls['coach'].hasError('required')"
+           >
+             Coach Required
+           </mat-error>
+  
+          <br>
+        </div>
+      </div>
+    </div>
+  </form>
+  
+  <div class="flex flex-row justify-between">
+    <button
+      class="block px-6 py-2 mx-auto text-lg font-semibold text-indigo-100 bg-indigo-600 rounded-md"
+     (click)="postFormation()">
+      Update
+    </button>
+    <button
+    class="block px-6 py-2 mx-auto text-lg font-semibold text-indigo-100 bg-indigo-600 rounded-md"
+     (click)="cancel()">
+    Cancel
+    </button>
+  </div>

@@ -1,0 +1,69 @@
+<div class="px-3">
+  <div class="bg-white">
+    <section aria-labelledby="features-heading" class="relative">
+      <div
+        class="aspect-w-3 aspect-h-2 overflow-hidden sm:aspect-w-5 lg:aspect-none lg:absolute lg:w-1/2 lg:h-full lg:pr-4 xl:pr-16"
+      >
+        <img
+          [src]="getCorseCover(currentCourse?.cover)"
+          alt="course-cover"
+          class="h-full w-full object-center object-cover lg:h-full lg:w-full px-2 py-3"
+        />
+      </div>
+      <div
+        class="max-w-2xl mx-auto pt-16 pb-24 px-4 sm:pb-32 sm:px-6 lg:max-w-7xl lg:pt-32 lg:px-8 lg:grid lg:grid-cols-2 lg:gap-x-8"
+      >
+        <div class="lg:col-start-2">
+     
+          <h2 id="features-heading" class=" text-blue-600/100 flex  flex-row font-medium text-gray-500">
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M5 5a2 2 0 012-2h10a2 2 0 012 2v16l-7-3.5L5 21V5z" />
+            </svg> &nbsp;    {{ currentCourse?.category }}
+          </h2>
+          <p class="mt-4 text-4xl font-extrabold text-gray-900 tracking-tight">
+            {{ currentCourse?.title }}
+          </p>
+          <p class="mt-4 text-gray-500">{{ currentCourse?.description }}</p>
+          <div class="p-4 mb-4 text-sm text-blue-700 bg-blue-100 rounded-lg dark:bg-blue-200 dark:text-blue-800" role="alert">
+            {{ currentCourse['createdAt'] | date : 'dd-MM-yyyy'}} 
+            <span class="px-3" >
+               By {{ currentCourse.author }} 
+           </span>  
+                  </div>
+     
+
+          <div class="w-full" *ngIf="currentCourse['chapters'].length !== 0">
+
+        <!-- This example requires Tailwind CSS v2.0+ -->
+<div>
+ 
+    <span class="bg-purple-100 text-purple-800 text-md font-semibold mr-2 px-2.5 py-0.5 rounded dark:bg-purple-200 dark:text-purple-900">Details</span>
+
+</div>
+<div class="mt-5 border-t border-gray-200">
+  <dl class="divide-y divide-gray-200">
+    <div class="py-4 sm:py-5 sm:grid sm:grid-cols-3 sm:gap-4">
+      <div class="" *ngFor="let chapter of currentCourse['chapters']">
+
+      <dt class="text-sm bg-green-100 text-green-800  font-semibold mr-2 px-2.5 py-0.5 rounded dark:bg-green-200 dark:text-green-900">{{ chapter.title }}</dt>
+      <dd class="mt-1 flex text-sm text-gray-900 sm:mt-0 sm:col-span-2">
+        <span class="flex-grow" [innerHtml]="chapter.content"></span>
+ 
+      </dd>
+      </div>
+    </div>
+ 
+  </dl>
+
+</div>
+            
+
+
+        </div><button [routerLink]='["/front/courses"]' type="button" class="focus:outline-none text-white bg-green-700 hover:bg-green-800 focus:ring-4 focus:ring-green-300 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-2 dark:bg-green-600 dark:hover:bg-green-700 dark:focus:ring-green-800">Back</button>
+
+    </div>
+</div>
+
+</section>
+</div>
+</div>

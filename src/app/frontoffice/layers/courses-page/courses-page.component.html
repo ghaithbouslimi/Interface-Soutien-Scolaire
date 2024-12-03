@@ -1,0 +1,9 @@
+<div class="bg-purple-100 rounded-lg py-5 px-6 mb-4 text-2xl  text-purple-700 mb-3" role="alert">
+  Nos Cours
+</div>
+
+<div class="flex flex-wrap justify-center mt-8">
+  <div *ngFor="let course of coursesList" class=" px-2 py-3">
+    <app-course-card [course]="course"></app-course-card>
+  </div>
+</div>

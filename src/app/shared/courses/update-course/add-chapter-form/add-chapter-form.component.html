@@ -1,0 +1,56 @@
+<h1 class="mb-8 text-3xl text-center">Chapter To Add</h1>
+<mat-dialog-content class="flex flex-col h-full">
+  <div class="flex flex-col align-center">
+    <form [formGroup]="chapterForm" novalidate>
+      <mat-card class="chapter-card">
+        <mat-card-header>
+          <mat-card-title>New Chapter</mat-card-title>
+        </mat-card-header>
+        <mat-card-content>
+          <div class="row">
+            <div class="col">
+              <mat-form-field class="full-width">
+                <input matInput placeholder="Title" formControlName="title" />
+                <mat-error
+                  *ngIf="chapterForm.controls['title'].hasError('required')"
+                >
+                  Title <strong>is required</strong>
+                </mat-error>
+              </mat-form-field>
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="col">
+             <angular-editor formControlName="content" ></angular-editor> 
+            </div>
+          </div>
+        </mat-card-content>
+      </mat-card>
+    </form>
+
+    <!-- Actions -->
+    <mat-dialog-actions class="flex flex-row justify-between py-5">
+      <div class="flex items-center">
+        <button
+          mat-raised-button
+          color="warn"
+          (click)="close()"
+          *ngIf="showCancelButton"
+        >
+          Cancel
+        </button>
+      </div>
+      <div class="flex items-center">
+        <button
+          mat-raised-button
+          color="primary"
+          [disabled]="!canBeClosed || !chapterForm.valid"
+          (click)="closeDialog()"
+        >
+          {{ primaryButtonText }}
+        </button>
+      </div>
+    </mat-dialog-actions>
+  </div>
+</mat-dialog-content>

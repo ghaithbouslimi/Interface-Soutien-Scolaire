@@ -1,0 +1,58 @@
+<section class="h-screen">
+  <div class="h-full px-6 text-gray-800">
+    <div class="flex flex-wrap items-center justify-center h-full xl:justify-center lg:justify-between g-6">
+      <div class="mb-12 grow-0 shrink-1 md:shrink-0 basis-auto xl:w-6/12 lg:w-6/12 md:w-9/12 md:mb-0">
+        <img src="./assets/login_cover.webp" class="w-full"
+          alt="Sample image" />
+      </div>
+      <div class="mb-12 xl:ml-20 xl:w-5/12 lg:w-5/12 md:w-8/12 md:mb-0">
+        <form [formGroup]="loginForm" novalidate>
+          <mat-card class="card">
+            <mat-card-header fxLayout="column" fxLayoutAlign="center center">
+              <mat-card-title fxFlexAlign="center">Login</mat-card-title>
+            </mat-card-header>
+            <mat-card-content>
+              <div class="row">
+                <div class="col">
+                  <mat-form-field class="full-width">
+                    <input matInput placeholder="email" formControlName="email">
+                    <mat-error *ngIf="loginForm.controls['email'].hasError('required')">
+                      Email est <strong>obligatoire</strong>
+                    </mat-error>
+                    <mat-error *ngIf="loginForm.value.email.invalid || loginForm.hasError">
+                      {{getErrorMessage()}}
+                    </mat-error>
+                    <mat-icon matPrefix class="px-6">email</mat-icon>
+                  </mat-form-field>
+                </div>
+              </div>
+              <br>
+              <div class="row">
+                <div class="col">
+                  <mat-form-field class="full-width">
+                    <input matInput placeholder="Mot de Passe" formControlName="password"
+                      [type]="hide ? 'text' : 'password' " required>
+                    <mat-error *ngIf="loginForm.controls['password'].hasError('required')">
+                      Mot de passe est <strong>obligatoire</strong>
+                    </mat-error>
+                    <mat-icon matPrefix class="px-6">lock</mat-icon>
+                    <button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'"
+                      [attr.aria-pressed]="hide">
+                      <mat-icon>{{hide ? 'visibility': 'visibility_off'}}</mat-icon>
+                    </button>
+                  </mat-form-field>
+                </div>
+              </div>
+            </mat-card-content>
+            <mat-card-actions>
+              <button mat-stroked-button color="accent" [disabled]="!loginForm.valid"
+                (click)="onSubmit()">Connecter</button>
+              <a mat-stroked-button color="accent" routerLink="/signup">Signup</a>
+              <a mat-stroked-button color="accent" routerLink="/front/home">Cancel</a>
+            </mat-card-actions>
+          </mat-card>
+        </form>
+      </div>
+    </div>
+  </div>
+</section>

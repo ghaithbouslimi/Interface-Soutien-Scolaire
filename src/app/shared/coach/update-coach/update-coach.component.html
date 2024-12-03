@@ -1,0 +1,132 @@
+<section class="w-full h-full  ">
+  <div class="h-full px-6 text-gray-800">
+    <div class="flex flex-wrap items-center justify-center h-full xl:justify-center lg:justify-between g-6">
+      <div class="mb-12 grow-0 shrink-1 md:shrink-0 basis-auto xl:w-6/12 lg:w-6/12 md:w-9/12 md:mb-0">
+        <img src="./assets/up.jpg" class="w-full"
+          alt="Sample image" />
+      </div>
+      <div class="mb-12 grow-0 shrink-1 md:shrink-0 basis-auto xl:w-6/12 lg:w-6/12 md:w-9/12 md:mb-0">
+        <ng-container [ngSwitch]="stepperOrientation | async">
+          <div *ngSwitchCase="'horizontal'">
+         
+          </div>
+          <div *ngSwitchCase="'vertical'">
+            Make your screen larger to see a horizontal stepper
+          </div>
+        </ng-container>
+
+        <mat-stepper
+          class="example-stepper"
+          [orientation]="(stepperOrientation | async)!"
+        >
+          <mat-step [stepControl]="coachForm">
+            <form [formGroup]="coachForm">
+              <h1>Update Coach</h1>
+              <ng-template matStepLabel>First part</ng-template>
+              
+              <mat-form-field appearance="fill">
+                <input matInput placeholder="Full Name" formControlName="fullName">
+                <mat-label>Full Name</mat-label>
+                <mat-error *ngIf="coachForm.controls['fullName'].hasError('required')">
+                  Full Name <strong>is required</strong>
+                </mat-error>
+              </mat-form-field>
+             
+              <mat-form-field appearance="fill">
+                <mat-label>Email</mat-label>
+                <input matInput placeholder="Ex. pat@example.com" formControlName="email">
+
+
+                <mat-error *ngIf="coachForm.controls['email'].hasError('required')">
+                  Email is <strong>required</strong>
+                </mat-error>
+              </mat-form-field>
+              
+              <mat-form-field appearance="fill">
+                <mat-label>Speciality</mat-label>
+                <mat-select formControlName="speciality">
+                  <mat-option
+                    *ngFor="let speciality of specialities"
+                    [value]="speciality.value"
+                    selected="speciality.value === ngSelect"
+                  >
+                    {{ speciality.viewValue }}
+                  </mat-option>
+                </mat-select>
+              </mat-form-field>
+              <div>
+                <button mat-button matStepperNext>Next</button>
+              </div>
+            </form>
+          </mat-step>
+          <mat-step [stepControl]="coachForm" optional>
+            <form [formGroup]="coachForm">
+              <ng-template matStepLabel>Second Part</ng-template>
+              <mat-form-field appearance="fill">
+                <input matInput placeholder="Phone" formControlName="phone" />
+                <mat-label>Phone</mat-label>
+                <span matPrefix>+216 &nbsp;</span>
+                <mat-error
+                  *ngIf="coachForm.controls['phone'].hasError('required')"
+                >
+                  Phone <strong>is required</strong>
+                </mat-error>
+              </mat-form-field>
+              
+              <mat-form-field>
+                <input
+                  matInput
+                  placeholder="Address"
+                  formControlName="address"
+                  required
+                />
+              </mat-form-field>
+
+              
+              <mat-form-field class="full-width">
+                <input matInput placeholder="City" formControlName="city" />
+                <mat-error
+                  *ngIf="coachForm.controls['city'].hasError('required')"
+                >
+                  City <strong>is required</strong>
+                </mat-error>
+              </mat-form-field>
+             
+              <mat-form-field class="full-width">
+                <input
+                  matInput
+                  placeholder="Country"
+                  formControlName="country"
+                />
+                <mat-error
+                  *ngIf="coachForm.controls['country'].hasError('required')"
+                >
+                  Country <strong>is required</strong>
+                </mat-error>
+              </mat-form-field>
+             
+              <mat-form-field class="full-width">
+                <textarea
+                  matInput
+                  placeholder="observations"
+                  formControlName="observations"
+                ></textarea>
+              </mat-form-field>
+              
+            </form>
+            <div class="relative h-32 w-32 ...">
+              <button class="absolute bottom-0 right-0 h-16 w-16 " mat-raised-button [routerLink]="['/admin/coaches']">Cancel</button>
+          <button class="absolute bottom-0 right-0 h-16 w-16 " mat-raised-button color="primary" (click)="onSubmit()" [disabled]="!coachForm.valid">Save</button>
+        </div>
+            
+      </mat-step>
+      
+        </mat-stepper>
+        
+     </div>
+     
+     </div>
+     </div>
+     
+     
+     </section>

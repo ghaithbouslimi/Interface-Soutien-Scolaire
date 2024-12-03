@@ -1,0 +1,77 @@
+
+
+<div class="flex items-center justify-center h-screen">
+    
+	<div class=" text-white font-bold rounded-lg border shadow-lg p-10">
+	
+	
+
+
+<form [formGroup]="courseForm" novalidate>
+    <mat-card class="course-card">
+      <mat-card-header>
+         <mat-card-title>New Course</mat-card-title>
+      </mat-card-header>
+      <mat-card-content>
+        <div class="row">
+          <div class="col">
+            <mat-form-field class="full-width">
+              <input matInput placeholder="Title" formControlName="title">
+              <mat-error *ngIf="courseForm.controls['title'].hasError('required')">
+                Title <strong>is required</strong>
+              </mat-error>
+            </mat-form-field>
+          </div>
+        </div>
+      
+        <div class="row">
+          <div class="col">
+            <mat-form-field class="full-width">
+              <textarea matInput   placeholder="Description" formControlName="description" class="w-full font-serif  p-4 text-gray-600 bg-indigo-50 outline-none rounded-md"></textarea>
+              <mat-error *ngIf="courseForm.controls['description'].hasError('required')">
+                Description <strong>is required</strong>
+              </mat-error>
+            </mat-form-field>
+          </div>
+        </div>
+
+        <div class="row">
+            <div class="col">
+              <mat-form-field class="full-width">
+                <textarea matInput placeholder="Author" formControlName="author"></textarea>
+                <mat-error *ngIf="courseForm.controls['author'].hasError('required')">
+                  Author <strong>is required</strong>
+                </mat-error>
+              </mat-form-field>
+            </div>
+          </div>
+  
+    
+  
+        <div class="row">
+          <div class="col">
+            <mat-form-field class="full-width">
+              <mat-label>Category</mat-label>
+              <mat-select formControlName="category">
+                <mat-option *ngFor="let dType of courseCategory" [value]="dType.value">
+                  {{dType.viewValue}}
+                </mat-option>
+              </mat-select>
+              <mat-error *ngIf="courseForm.controls['category'].hasError('required')">
+                Category <strong>is required</strong>
+              </mat-error>
+            </mat-form-field>
+          </div>
+        </div>
+  
+      </mat-card-content>
+      <mat-card-actions class="flex flex-row w-full ">
+        <button  mat-raised-button [routerLink]="['/admin/courses']">Cancel</button>
+        <button mat-raised-button color="primary" (click)="onSubmit()"
+        [disabled]="!courseForm.valid">Save</button>
+      </mat-card-actions>
+    </mat-card>
+  </form>
+</div>
+	
+</div>

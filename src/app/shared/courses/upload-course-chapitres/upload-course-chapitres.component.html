@@ -1,0 +1,12 @@
+<div class="form-group">
+  <label for="file">upload Ressource</label>
+  <input 
+      formControlName="file"
+      id="file" 
+      type="file" 
+      class="form-control"
+      (change)="onFileChange($event)">
+  <div *ngIf="f['file'].touched && f['file'].invalid" class="alert alert-danger">
+      <div *ngIf="f['file'].errors && f['file'].errors['required']">File is required.</div>
+  </div>
+</div>

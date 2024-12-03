@@ -1,0 +1,29 @@
+<div class="rounded-xl shadow-2xl shadow-violet-100 " style="width: 400px;">
+    <img class="rounded-t-xl  w-full object-cover" [src]="getCourseCover(course?.cover)">
+    <div class="flex flex-col p-7">
+        <div class="flex flex-row ">
+            <div class=" text-xs mb-5 uppercase bg-yellow-100 p-1 px-2 text-yellow-700 rounded-2xl">{{course?.category}}</div>
+        </div>
+        <h2 class="text-xl mr-8 rounded-xl text-center font-bold truncate  bg-blue-200 text-blue-900">{{course?.title}}</h2>
+        <p class="text-gray-600">{{course?.description}}</p>
+        <div class="flex flex-row  items-center justify-start">
+      
+                <div class="basis-1/2">
+                            <p class="font-bold text-sm ">{{course.author}}    
+                </p> </div>
+                <div class="basis-1/2"> <a [routerLink]="['/front/course-detail',course.id]"
+                    class="hover:bg-grey-darker  text-blue-400
+                     hover:text-purple-800  text-bold
+                     hover:font-extrabold    w-1/3 
+                     lg:w-full "
+                     >Read More</a></div>
+             
+     
+               
+
+        
+           
+             
+        </div>
+    </div>
+</div>
